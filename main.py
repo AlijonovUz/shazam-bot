@@ -1,10 +1,9 @@
 from telebot import TeleBot
 from telebot.types import Message
-from rapidfuzz import fuzz
-from shazam import recognize
-from music import get_music
 
-bot = TeleBot("6970500008:AAEnmrgE55ypXnj6njFd_hc0-bUVanwaFPg", parse_mode='HTML')
+from shazam import recognize
+
+bot = TeleBot("TOKEN", parse_mode='HTML')
 
 
 @bot.message_handler(commands=['start'])
@@ -38,12 +37,6 @@ def reaction_to_media(message: Message):
             f"• <b>Qo'shiqchi:</b> {artist}")
 
     bot.send_message(chat_id, text)
-
-    music_list = get_music(title)
-
-    if music_list:
-        best_match = max(music_list, key=lambda x: fuzz.ratio(x['title'], title))
-        bot.send_audio(chat_id, best_match['url'])
 
 
 if __name__ == '__main__':

@@ -1,4 +1,2 @@
 pyTelegrambotApi
 shazamio
-rapidfuzz
-lxml
